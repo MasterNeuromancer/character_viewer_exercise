@@ -20,9 +20,7 @@ final Provider<GoRouter> routerProvider =
       GoRoute(
         path: AppPages.viewCharactersHomePage,
         builder: (BuildContext context, GoRouterState state) {
-          return const ViewCharactersHomePage(
-            title: 'View Characters',
-          );
+          return const ViewCharactersHomePage();
         },
         routes: <GoRoute>[
           GoRoute(
@@ -32,6 +30,7 @@ final Provider<GoRouter> routerProvider =
               final params = state.extra as Map?;
               return CharacterDetails(
                 details: params?['details'],
+                characterName: params?['characterName'],
               );
             },
           ),

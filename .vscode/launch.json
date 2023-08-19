@@ -5,21 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "character_viewer_exercise",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "character_viewer_exercise (profile mode)",
+            "name": "character_viewer_the_simpsons",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "program": "lib/main_the_simpsons.dart",
         },
         {
-            "name": "character_viewer_exercise (release mode)",
+            "name": "character_viewer_the_wire",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
-        }
+            "program": "lib/main_the_wire.dart",
+        },
     ]
 }

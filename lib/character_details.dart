@@ -5,48 +5,69 @@ class CharacterDetails extends StatelessWidget {
   const CharacterDetails({
     super.key,
     required this.details,
+    required this.characterName,
   });
 
-  final Character details;
+  final Character? details;
+  final String characterName;
 
   @override
   Widget build(BuildContext context) {
-    print(details.icon.url);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Details'),
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        title: Text(characterName),
         centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              const SizedBox(
-                height: 35,
-              ),
-              CircleAvatar(
-                radius: 125,
-                // backgroundImage: const NetworkImage(
-                //   'https://picsum.photos/id/237/200/300',
-                // ),
-                foregroundImage: NetworkImage(
-                  'https://duckduckgo.com/${details.icon.url}',
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                const SizedBox(
+                  height: 35,
                 ),
-              ),
-              const SizedBox(
-                height: 35,
-              ),
-              // NetworkImage(
-              //   'https://duckduckgo.com/${details.icon.url}',
-              // ),
-              Text(
-                details.text,
-                style: Theme.of(context).textTheme.displaySmall,
-              ),
-            ],
+                Image.network(
+                  'https://duckduckgo.com/${details?.icon.url}',
+                  fit: BoxFit.fitWidth,
+                  height: 250,
+                  errorBuilder:
+                      (BuildContext _, Object exception, StackTrace? trace) {
+                    return const Icon(
+                      Icons.person,
+                      size: 105,
+                    );
+                  },
+                  frameBuilder: (
+                    BuildContext _,
+                    Widget image,
+                    int? loadingBuilder,
+                    bool __,
+                  ) {
+                    if (loadingBuilder == null) {
+                      return CircularProgressIndicator(
+                        strokeWidth: 5,
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                      );
+                    }
+                    return Column(
+                      children: [
+                        image,
+                      ],
+                    );
+                  },
+                ),
+                const SizedBox(
+                  height: 35,
+                ),
+                Text(
+                  details?.text ?? '',
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
+              ],
+            ),
           ),
         ),
       ),
