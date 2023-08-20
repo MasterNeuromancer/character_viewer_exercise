@@ -8,7 +8,7 @@ class FlavorConfig {
 
   FlavorConfig({
     this.appTitle = "Character Viewer",
-    this.imageLocation = "assets/images/default_image.jpg",
+    this.imageLocation = "assets/images/the_wire_person.png",
     this.apiEndpoint = '',
   }) {
     theme = ThemeData.light();

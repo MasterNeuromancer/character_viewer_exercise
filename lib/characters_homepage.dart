@@ -20,7 +20,7 @@ class CharactersHomePage extends ConsumerStatefulWidget {
 
 class _CharactersHomePageState extends ConsumerState<CharactersHomePage> {
   Character? selectedCharacter;
-  String selectedCharacterName = '';
+  String selectedCharacterName = 'Select a Character';
 
   @override
   Widget build(BuildContext context) {
@@ -33,28 +33,37 @@ class _CharactersHomePageState extends ConsumerState<CharactersHomePage> {
         ref.watch(searchTextEditingControllerProvider);
     final filteredCharacters = ref.watch(filteredCharactersProvider);
 
-    if (useMobileLayout) {
-      return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-          title: Text(flavorTitle),
-          centerTitle: true,
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        title: Text(
+          flavorTitle,
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
-        body: Column(
-          children: [
-            const SizedBox(
-              height: 16,
-            ),
-            TextFormField(
+        centerTitle: true,
+      ),
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 16,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: TextFormField(
               controller: searchController,
+              style: Theme.of(context).textTheme.headlineMedium,
               onChanged: (value) => ref
                   .watch(filteredCharactersProvider.notifier)
                   .filterCharacters(),
               onTapOutside: (event) =>
                   FocusManager.instance.primaryFocus?.unfocus(),
               decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search),
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
                 hintText: 'Search for character',
+                hintStyle: Theme.of(context).textTheme.headlineSmall,
                 suffixIcon: IconButton(
                   onPressed: () {
                     searchController.text = '';
@@ -66,8 +75,27 @@ class _CharactersHomePageState extends ConsumerState<CharactersHomePage> {
                     Icons.close,
                   ),
                 ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.secondary,
+                    width: 3.5,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.primaryContainer,
+                    width: 3.5,
+                  ),
+                ),
               ),
             ),
+          ),
+          const SizedBox(
+            height: 18,
+          ),
+          if (useMobileLayout) ...[
             Expanded(
               child: ListView.builder(
                 itemCount: filteredCharacters.length,
@@ -97,79 +125,51 @@ class _CharactersHomePageState extends ConsumerState<CharactersHomePage> {
                 },
               ),
             ),
-          ],
-        ),
-      );
-    }
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Tablet Mode'),
-        centerTitle: true,
-      ),
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 16,
-          ),
-          TextFormField(
-            controller: searchController,
-            decoration: InputDecoration(
-              prefixIcon: const Icon(Icons.search),
-              hintText: 'Search for character',
-              suffixIcon: IconButton(
-                onPressed: () {
-                  searchController.text = '';
-                },
-                icon: const Icon(
-                  Icons.close,
-                ),
+          ] else ...[
+            Expanded(
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: filteredCharacters.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        String characterName;
+                        if (filteredCharacters[index].text.contains('-')) {
+                          characterName = filteredCharacters[index]
+                              .text
+                              .substring(0,
+                                  filteredCharacters[index].text.indexOf('-'))
+                              .trim();
+                        } else {
+                          characterName = filteredCharacters[index].text;
+                        }
+
+                        return CharacterListTile(
+                          character: filteredCharacters[index],
+                          characterName: characterName,
+                          onTap: () {
+                            setState(() {
+                              selectedCharacter = filteredCharacters[index];
+                              selectedCharacterName = characterName;
+                            });
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: screenWidth / 2,
+                    child: CharacterDetails(
+                      details: selectedCharacter,
+                      characterName: selectedCharacterName,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-          Expanded(
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: filteredCharacters.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      String characterName;
-                      if (filteredCharacters[index].text.contains('-')) {
-                        characterName = filteredCharacters[index]
-                            .text
-                            .substring(
-                                0, filteredCharacters[index].text.indexOf('-'))
-                            .trim();
-                      } else {
-                        characterName = filteredCharacters[index].text;
-                      }
-
-                      return CharacterListTile(
-                        character: filteredCharacters[index],
-                        characterName: characterName,
-                        onTap: () {
-                          setState(() {
-                            selectedCharacter = filteredCharacters[index];
-                            selectedCharacterName = characterName;
-                          });
-                        },
-                      );
-                    },
-                  ),
-                ),
-                SizedBox(
-                  width: screenWidth / 2,
-                  child: CharacterDetails(
-                    details: selectedCharacter,
-                    characterName: selectedCharacterName,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          ]
         ],
       ),
     );
@@ -193,7 +193,7 @@ class CharacterListTile extends StatelessWidget {
     return ListTile(
       title: Text(
         characterName,
-        style: Theme.of(context).textTheme.headlineMedium,
+        style: Theme.of(context).textTheme.displaySmall,
       ),
       onTap: onTap,
     );
