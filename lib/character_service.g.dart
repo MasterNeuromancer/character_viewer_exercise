@@ -6,7 +6,7 @@ part of 'character_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$asyncCharactersHash() => r'584d88d95e9878eca6e5ef0fc992a2a54a13e35c';
+String _$asyncCharactersHash() => r'9a7e798d5b60753ce45343e12e6aba75b402b8ca';
 
 /// See also [AsyncCharacters].
 @ProviderFor(AsyncCharacters)

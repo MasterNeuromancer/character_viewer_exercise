@@ -1,5 +1,5 @@
 import 'package:character_viewer_exercise/character_details.dart';
-import 'package:character_viewer_exercise/view_characters_homepage.dart';
+import 'package:character_viewer_exercise/characters_homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -20,7 +20,7 @@ final Provider<GoRouter> routerProvider =
       GoRoute(
         path: AppPages.viewCharactersHomePage,
         builder: (BuildContext context, GoRouterState state) {
-          return const ViewCharactersHomePage();
+          return const CharactersHomePage();
         },
         routes: <GoRoute>[
           GoRoute(

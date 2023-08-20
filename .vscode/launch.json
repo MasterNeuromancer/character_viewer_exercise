@@ -9,12 +9,24 @@
             "request": "launch",
             "type": "dart",
             "program": "lib/main_the_simpsons.dart",
+            "args": [
+                "--flavor",
+                "TheSimpsonsCharacterViewer",
+                "--target",
+                "lib/main_the_simpsons.dart"
+            ]
         },
         {
             "name": "character_viewer_the_wire",
             "request": "launch",
             "type": "dart",
             "program": "lib/main_the_wire.dart",
+            "args": [
+                "--flavor",
+                "TheWireCharacterViewer",
+                "--target",
+                "lib/main_the_wire.dart"
+            ]
         },
     ]
 }

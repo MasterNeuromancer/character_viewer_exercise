@@ -13,7 +13,7 @@ part 'character_service.g.dart';
 class AsyncCharacters extends _$AsyncCharacters {
   Future<List<Character>> _fetchCharacters() async {
     String flavorEndpoint =
-        ref.watch(flavorConfigProvider.notifier).state.apiEndpoint;
+        ref.read(flavorConfigProvider.notifier).state.apiEndpoint;
     Uri url = Uri.parse(flavorEndpoint);
     final res = await http.get(url);
     final charactersRes = jsonDecode(res.body);
@@ -26,23 +26,5 @@ class AsyncCharacters extends _$AsyncCharacters {
   @override
   FutureOr<List<Character>> build() async {
     return _fetchCharacters();
-  }
-
-  Future<void> filterCharacters(String query) async {
-    List<Character> filteredList;
-
-    filteredList = state.value!
-        .where((element) => element.text.toLowerCase().contains(query))
-        .toList();
-
-    if (query == '') {
-      state = await AsyncValue.guard(() async {
-        return _fetchCharacters();
-      });
-    } else {
-      state = await AsyncValue.guard(() async {
-        return filteredList;
-      });
-    }
   }
 }
