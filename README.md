@@ -1,16 +1,21 @@
-# character_viewer_exercise
+# Character_Viewer_App
 
-A new Flutter project.
+A Flutter project for viewing characters from a show such as The Wire or The Simpsons.
 
-## Getting Started
+## Running Project
 
-This project is a starting point for a Flutter application.
+This project is set up to run on VSCode using flavors to build 2 separate apps - The Simpsons Character Viewer and The Wire Character Viewer.
 
-A few resources to get you started if this is your first Flutter project:
+Make sure you have the following: 
+  Flutter Version (3.13)
+  VSCode
+  XCode
+  Android Studio
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Run/Debug using the debug tab for the different app flavors.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Resources
+  This app relies on the following pub.dev packages: http, riverpod, gorouter.
+
+  To create the different app flavors, much inspiration was taken from this youtube tutorial: https://www.youtube.com/watch?v=3tiy5M26H8c
+  
