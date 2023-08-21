@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:character_viewer_exercise/run_app_with_flavor.dart'
+import 'package:character_viewer_exercise/core/run_app_with_flavor.dart'
     show flavorConfigProvider;
 import 'package:http/http.dart' as http;
-import 'package:character_viewer_exercise/character.dart';
+import 'package:character_viewer_exercise/models/character.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'character_service.g.dart';

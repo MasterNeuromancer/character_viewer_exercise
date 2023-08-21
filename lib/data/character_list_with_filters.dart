@@ -1,6 +1,6 @@
-import 'package:character_viewer_exercise/character.dart';
-import 'package:character_viewer_exercise/character_service.dart';
-import 'package:character_viewer_exercise/characters_homepage.dart'
+import 'package:character_viewer_exercise/data/character_service.dart';
+import 'package:character_viewer_exercise/models/character.dart';
+import 'package:character_viewer_exercise/screens/characters_homepage.dart'
     show searchTextEditingControllerProvider;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

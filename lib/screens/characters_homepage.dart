@@ -1,8 +1,8 @@
-import 'package:character_viewer_exercise/character.dart';
-import 'package:character_viewer_exercise/character_details.dart';
-import 'package:character_viewer_exercise/character_list_with_filters.dart';
-import 'package:character_viewer_exercise/router.dart';
-import 'package:character_viewer_exercise/run_app_with_flavor.dart'
+import 'package:character_viewer_exercise/data/character_list_with_filters.dart';
+import 'package:character_viewer_exercise/models/character.dart';
+import 'package:character_viewer_exercise/screens/character_details.dart';
+import 'package:character_viewer_exercise/core/router.dart';
+import 'package:character_viewer_exercise/core/run_app_with_flavor.dart'
     show flavorConfigProvider;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
