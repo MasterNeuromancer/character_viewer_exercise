@@ -8,6 +8,7 @@ void main() {
       ..appTitle = "The Simpsons Character Viewer"
       ..apiEndpoint =
           "http://api.duckduckgo.com/?q=simpsons+characters&format=json"
+      ..imageLocation = "assets/images/the_simpson_no_image.jpeg"
       ..theme = ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellow),
         useMaterial3: true,
