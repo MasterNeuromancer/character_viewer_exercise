@@ -1,5 +1,5 @@
-import 'package:character_viewer_exercise/character_viewer_app.dart';
-import 'package:character_viewer_exercise/flavor_config.dart';
+import 'package:character_viewer_exercise/core/character_viewer_app.dart';
+import 'package:character_viewer_exercise/models/flavor_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

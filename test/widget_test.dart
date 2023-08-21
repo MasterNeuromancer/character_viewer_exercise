@@ -5,9 +5,9 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:character_viewer_exercise/character_viewer_app.dart';
-import 'package:character_viewer_exercise/flavor_config.dart';
-import 'package:character_viewer_exercise/run_app_with_flavor.dart'
+import 'package:character_viewer_exercise/core/character_viewer_app.dart';
+import 'package:character_viewer_exercise/models/flavor_config.dart';
+import 'package:character_viewer_exercise/core/run_app_with_flavor.dart'
     show flavorConfigProvider;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

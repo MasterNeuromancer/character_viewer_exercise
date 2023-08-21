@@ -1,5 +1,5 @@
-import 'package:character_viewer_exercise/flavor_config.dart';
-import 'package:character_viewer_exercise/run_app_with_flavor.dart';
+import 'package:character_viewer_exercise/models/flavor_config.dart';
+import 'package:character_viewer_exercise/core/run_app_with_flavor.dart';
 import 'package:flutter/material.dart';
 
 void main() {

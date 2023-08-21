@@ -1,5 +1,5 @@
-import 'package:character_viewer_exercise/character_details.dart';
-import 'package:character_viewer_exercise/characters_homepage.dart';
+import 'package:character_viewer_exercise/screens/character_details.dart';
+import 'package:character_viewer_exercise/screens/characters_homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
