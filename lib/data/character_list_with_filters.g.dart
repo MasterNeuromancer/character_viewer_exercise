@@ -6,22 +6,22 @@ part of 'character_list_with_filters.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$filteredCharactersHash() =>
-    r'bdc0e566e31969f04757b0941e093dc3145c5dd9';
+String _$characterListWithFiltersHash() =>
+    r'a88ccf62ee4cb0199c00f362beafe7c2250fa77b';
 
-/// See also [FilteredCharacters].
-@ProviderFor(FilteredCharacters)
-final filteredCharactersProvider =
-    AutoDisposeNotifierProvider<FilteredCharacters, List<Character>>.internal(
-  FilteredCharacters.new,
-  name: r'filteredCharactersProvider',
+/// See also [characterListWithFilters].
+@ProviderFor(characterListWithFilters)
+final characterListWithFiltersProvider =
+    AutoDisposeProvider<List<Character>>.internal(
+  characterListWithFilters,
+  name: r'characterListWithFiltersProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$filteredCharactersHash,
+      : _$characterListWithFiltersHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$FilteredCharacters = AutoDisposeNotifier<List<Character>>;
+typedef CharacterListWithFiltersRef = AutoDisposeProviderRef<List<Character>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

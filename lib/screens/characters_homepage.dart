@@ -8,8 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-final searchTextEditingControllerProvider =
-    Provider.autoDispose((ref) => TextEditingController());
+final StateProvider<String> searchTextProvider =
+    StateProvider<String>((StateProviderRef<String> ref) {
+  return '';
+});
 
 class CharactersHomePage extends ConsumerStatefulWidget {
   const CharactersHomePage({super.key});
@@ -21,6 +23,7 @@ class CharactersHomePage extends ConsumerStatefulWidget {
 class _CharactersHomePageState extends ConsumerState<CharactersHomePage> {
   Character? selectedCharacter;
   String selectedCharacterName = 'Select a Character';
+  final TextEditingController searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +32,7 @@ class _CharactersHomePageState extends ConsumerState<CharactersHomePage> {
     double shortestSide = MediaQuery.of(context).size.shortestSide;
     double screenWidth = MediaQuery.of(context).size.width;
     final bool useMobileLayout = shortestSide < 550;
-    final TextEditingController searchController =
-        ref.watch(searchTextEditingControllerProvider);
-    final filteredCharacters = ref.watch(filteredCharactersProvider);
+    final filteredCharacters = ref.watch(characterListWithFiltersProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -52,9 +53,9 @@ class _CharactersHomePageState extends ConsumerState<CharactersHomePage> {
             child: TextFormField(
               controller: searchController,
               style: Theme.of(context).textTheme.headlineMedium,
-              onChanged: (value) => ref
-                  .watch(filteredCharactersProvider.notifier)
-                  .filterCharacters(),
+              onChanged: (String? value) => ref
+                  .read(searchTextProvider.notifier)
+                  .update((String? state) => value!),
               onTapOutside: (event) =>
                   FocusManager.instance.primaryFocus?.unfocus(),
               decoration: InputDecoration(
@@ -68,8 +69,8 @@ class _CharactersHomePageState extends ConsumerState<CharactersHomePage> {
                   onPressed: () {
                     searchController.text = '';
                     ref
-                        .watch(filteredCharactersProvider.notifier)
-                        .filterCharacters();
+                        .read(searchTextProvider.notifier)
+                        .update((String? state) => '');
                   },
                   icon: const Icon(
                     Icons.close,
